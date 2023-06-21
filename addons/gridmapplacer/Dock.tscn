@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dbovsifj87wpg"]
+
+[node name="Dock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="TileMapSelector" type="OptionButton" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridMapSelector" type="OptionButton" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResetDropdownsBtn" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reset Nodes in Dropdown"
+
+[node name="PopulateGridMapBtn" type="Button" parent="GridContainer/VBoxContainer"]
+layout_mode = 2
+text = "POPULATE THE GRID MAP"
+
+[node name="ErrorPopup" type="Popup" parent="."]
+initial_position = 1
+title = "Can't Populate"
+size = Vector2i(506, 100)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ErrorPopup"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ErrorPopup/VBoxContainer"]
+layout_mode = 2
+text = "Can't populate due to either tilemap or gridmap being unselected"
+
+[node name="CloseBtn" type="Button" parent="ErrorPopup/VBoxContainer"]
+layout_mode = 2
+text = "Close"

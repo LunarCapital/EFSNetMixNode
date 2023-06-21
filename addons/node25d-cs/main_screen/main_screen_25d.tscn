@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://ty7uhdr3aawy"]
+
+[ext_resource type="ButtonGroup" path="res://addons/node25d-cs/main_screen/view_mode_button_group.tres" id="1_htkpc"]
+[ext_resource type="Script" path="res://addons/node25d-cs/main_screen/viewport_25d.gd" id="2_wy7pq"]
+
+[sub_resource type="ViewportTexture" id="1"]
+viewport_path = NodePath("Viewport25D/Viewport2D")
+
+[sub_resource type="ViewportTexture" id="2"]
+viewport_path = NodePath("Viewport25D/ViewportOverlay")
+
+[node name="MainScreen25D" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewModeButtons" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="45Degree" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_group = ExtResource("1_htkpc")
+text = "45 Degree"
+
+[node name="Isometric" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_group = ExtResource("1_htkpc")
+text = "Isometric"
+
+[node name="TopDown" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("1_htkpc")
+text = "Top Down"
+
+[node name="FrontSide" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_group = ExtResource("1_htkpc")
+text = "Front Side"
+
+[node name="ObliqueY" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_group = ExtResource("1_htkpc")
+text = "Oblique Y"
+
+[node name="ObliqueZ" type="CheckBox" parent="TopBar/ViewModeButtons"]
+layout_mode = 2
+button_group = ExtResource("1_htkpc")
+text = "Oblique Z"
+
+[node name="Zoom" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="ZoomOut" type="Button" parent="TopBar/Zoom"]
+layout_mode = 2
+text = "-"
+
+[node name="ZoomPercent" type="Label" parent="TopBar/Zoom"]
+layout_mode = 2
+text = "100%"
+clip_text = true
+
+[node name="ZoomReset" type="Button" parent="TopBar/Zoom/ZoomPercent"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ZoomIn" type="Button" parent="TopBar/Zoom"]
+layout_mode = 2
+text = "+"
+
+[node name="Viewport25D" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.301961, 0.301961, 0.301961, 1)
+script = ExtResource("2_wy7pq")
+
+[node name="Viewport2D" type="SubViewport" parent="Viewport25D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1600, 864)
+
+[node name="ViewportOverlay" type="SubViewport" parent="Viewport25D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1600, 864)
+
+[node name="ViewportTexture" type="TextureRect" parent="Viewport25D"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("1")
+expand_mode = 1
+
+[node name="Overlay" type="TextureRect" parent="Viewport25D/ViewportTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("2")
+
+[connection signal="pressed" from="TopBar/Zoom/ZoomOut" to="Viewport25D" method="_on_ZoomOut_pressed"]
+[connection signal="pressed" from="TopBar/Zoom/ZoomPercent/ZoomReset" to="Viewport25D" method="_on_ZoomReset_pressed"]
+[connection signal="pressed" from="TopBar/Zoom/ZoomIn" to="Viewport25D" method="_on_ZoomIn_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="MeshLibrary" load_steps=2 format=3 uid="uid://cgmffb8yh60px"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6odtk"]
+
+[resource]
+item/0/name = "Cube"
+item/0/mesh = SubResource("BoxMesh_6odtk")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
